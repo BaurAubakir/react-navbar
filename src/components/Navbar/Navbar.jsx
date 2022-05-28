@@ -20,9 +20,9 @@ const Navbar = () => {
   );
   return (
     <header className={styles.navbar}>
-      <Link className={styles.logo} to='/'>
-        Logobakery
-      </Link>
+      <ul className={styles.logo}>
+        <CustomLink to='/'>Logobakery</CustomLink>
+      </ul>
       <Menu className={styles.menu}>
         <CustomLink to='/projects'>Projects</CustomLink>
         <CustomLink to='/about'>About</CustomLink>
