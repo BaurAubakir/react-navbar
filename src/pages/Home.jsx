@@ -1,15 +1,15 @@
-import { useStoreState } from 'easy-peasy';
+import { useSelector } from 'react-redux';
 
 import Loader from 'components/Loader';
-import styles from 'styles/Home.module.scss';
 
-const Home = () => {
-  const isLoading = useStoreState((state) => state.data.isLoading);
+const HomePage = () => {
+  const { isLoading } = useSelector((state) => state.app);
+
   return (
-    <div className={styles.container}>
+    <div className='container'>
       {isLoading ? <Loader /> : <h1>Hello from React</h1>}
     </div>
   );
 };
 
-export default Home;
+export default HomePage;

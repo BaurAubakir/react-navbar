@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
 import { ReactComponent as Bars } from './icons/bars-solid.svg';
@@ -7,9 +7,31 @@ import styles from './styles/Navbar.module.scss';
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
+  const ref = useRef(null);
+
+  const handleEscape = (e) => {
+    if (e.key === 'Escape') {
+      setShow(false);
+    }
+  };
+
+  const handleOtsideClick = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setShow(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleEscape, false);
+    document.addEventListener('click', handleOtsideClick, false);
+    return () => {
+      document.removeEventListener('keydown', handleEscape, false);
+      document.removeEventListener('click', handleOtsideClick, false);
+    };
+  });
 
   const showMenu = show && (
-    <MobileMenu className={styles.mobileMenu} onClick={() => setShow(!show)}>
+    <MobileMenu className={styles.mobileMenu} onClick={() => setShow(false)}>
       <CustomLink to='/projects' onClick={() => setShow(!show)}>
         Projects
       </CustomLink>
@@ -19,7 +41,7 @@ const Navbar = () => {
     </MobileMenu>
   );
   return (
-    <header className={styles.navbar}>
+    <header className={styles.navbar} ref={ref}>
       <ul className={styles.logo}>
         <CustomLink to='/'>Logobakery</CustomLink>
       </ul>
@@ -49,9 +71,7 @@ const MobileMenu = ({ children, className, onClick }) => (
       animation: 'fadeInLeft 0.3s ease',
     }}
   >
-    <button className={styles.xmark} onClick={onClick}>
-      <Xmark style={{ width: 20, height: 20, fill: '#ecf0f1' }} />
-    </button>
+    <Xmark className={styles.xmark} onClick={onClick} />
     <ul>{children}</ul>
   </nav>
 );

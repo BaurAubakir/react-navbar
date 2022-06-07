@@ -1,14 +1,16 @@
 @import url('~animate.css/animate.min.css');
+@import url('~react-toastify/dist/ReactToastify.css');
 @import 'fonts.scss';
 @import 'loader.scss';
 
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html,
 body {
-  margin: 0;
   font-family: 'Oswald', sans-serif;
   overflow-x: hidden;
   line-height: 1.5;
@@ -50,6 +52,11 @@ textarea {
   outline: none;
 }
 
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
 ::placeholder {
   color: #9a9b9c;
 }
@@ -66,4 +73,21 @@ button {
 
 ul li a.active {
   color: #3498db;
+}
+
+.container {
+  height: calc(100vh - 80px);
+  padding: 5%;
+}
+
+.Toastify__toast-body {
+  font-family: 'Oswald', sans-serif;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
