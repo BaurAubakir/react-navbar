@@ -7,11 +7,11 @@ const queries = [
   '(min-width: 1200px)',
 ];
 
+const mediaQuieriesList = queries.map((query) => matchMedia(query));
+
+const getValues = () => mediaQuieriesList.map((mql) => mql.matches);
+
 export const useMatchMedia = () => {
-  const mediaQuieriesList = queries.map((query) => matchMedia(query));
-
-  const getValues = () => mediaQuieriesList.map((mql) => mql.matches);
-
   const [values, setValues] = useState(getValues);
 
   useLayoutEffect(() => {
@@ -25,7 +25,7 @@ export const useMatchMedia = () => {
       mediaQuieriesList.forEach((mql) =>
         mql.removeEventListener('change', screenHandler)
       );
-  });
+  }, []);
 
   return ['isFold', 'isMobile', 'isTablet', 'isDesktop'].reduce(
     (acc, screen, index) => ({
