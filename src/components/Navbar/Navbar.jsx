@@ -4,10 +4,12 @@ import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import { ReactComponent as Bars } from './icons/bars-solid.svg';
 import { ReactComponent as Xmark } from './icons/xmark-solid.svg';
 import styles from './styles/Navbar.module.scss';
+import { useMatchMedia } from 'hooks/useMatchMedia';
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const ref = useRef(null);
+  const { isMobile } = useMatchMedia();
 
   const handleEscape = (e) => {
     if (e.key === 'Escape') {
@@ -45,14 +47,18 @@ const Navbar = () => {
       <ul className={styles.logo}>
         <CustomLink to='/'>Logobakery</CustomLink>
       </ul>
-      <Menu className={styles.menu}>
-        <CustomLink to='/projects'>Projects</CustomLink>
-        <CustomLink to='/about'>About</CustomLink>
-        <button>Contacts</button>
-      </Menu>
-      <button className={styles.menuIcon} onClick={() => setShow(!show)}>
-        <Bars style={{ width: 25, height: 25, fill: '#3498db' }} />
-      </button>
+      {isMobile ? (
+        <Menu className={styles.menu}>
+          <CustomLink to='/projects'>Projects</CustomLink>
+          <CustomLink to='/about'>About</CustomLink>
+          <button>Contacts</button>
+        </Menu>
+      ) : (
+        <button className={styles.menuIcon} onClick={() => setShow(!show)}>
+          <Bars style={{ width: 25, height: 25, fill: '#3498db' }} />
+        </button>
+      )}
+
       {showMenu}
     </header>
   );
