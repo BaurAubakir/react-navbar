@@ -1,4 +1,4 @@
-const Loader = () => (
+export const Loader = () => (
   <div className='loader'>
     <div className='lds-grid'>
       <div></div>
@@ -13,5 +13,3 @@ const Loader = () => (
     </div>
   </div>
 );
-
-export default Loader;

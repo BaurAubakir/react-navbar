@@ -4,9 +4,9 @@ import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import { ReactComponent as Bars } from './icons/bars-solid.svg';
 import { ReactComponent as Xmark } from './icons/xmark-solid.svg';
 import styles from './styles/Navbar.module.scss';
-import { useMatchMedia } from 'hooks/useMatchMedia';
+import { useMatchMedia } from 'hooks';
 
-const Navbar = () => {
+export const Navbar = () => {
   const [show, setShow] = useState(false);
   const ref = useRef(null);
   const { isMobile } = useMatchMedia();
@@ -94,5 +94,3 @@ const CustomLink = ({ to, children, ...props }) => {
     </li>
   );
 };
-
-export default Navbar;

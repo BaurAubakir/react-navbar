@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 
-import Loader from 'components/Loader';
+import { Loader } from 'components';
 
-const HomePage = () => {
+export const HomePage = () => {
   const { isLoading } = useSelector((state) => state.app);
 
   return (
@@ -11,5 +11,3 @@ const HomePage = () => {
     </div>
   );
 };
-
-export default HomePage;
