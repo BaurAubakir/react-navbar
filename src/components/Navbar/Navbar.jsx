@@ -48,15 +48,15 @@ const Navbar = () => {
         <CustomLink to='/'>Logobakery</CustomLink>
       </ul>
       {isMobile ? (
+        <button className={styles.menuIcon} onClick={() => setShow(!show)}>
+          <Bars style={{ width: 25, height: 25, fill: '#3498db' }} />
+        </button>
+      ) : (
         <Menu className={styles.menu}>
           <CustomLink to='/projects'>Projects</CustomLink>
           <CustomLink to='/about'>About</CustomLink>
           <button>Contacts</button>
         </Menu>
-      ) : (
-        <button className={styles.menuIcon} onClick={() => setShow(!show)}>
-          <Bars style={{ width: 25, height: 25, fill: '#3498db' }} />
-        </button>
       )}
 
       {showMenu}
